@@ -4,28 +4,42 @@
   <title>hhh</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <script type="text/javascript">
+  function resizeTitle() {
+    document.getElementById('title').style.width = main.clientWidth-70 + "px";
+  }
+  </script>
   <style type='text/css'>
   body {
     margin:           0px;
-    font-family:      Helvetica;
+    font-family:  sans-serif;
+    font-weight: 350;
   }
   html,body{height:100%}
   #title{
+    color: #BBBBBB;
+    font-size:        30px;
     position: absolute;
     left: 280px;
     text-align: center;
     padding: 100px 35px 35px 35px;
   }
   #main{
+    color: #555555;
     position: absolute;
     left: 280px;
-    padding: 180px 35px 35px 35px;
+    padding: 210px 35px 35px 35px;
     margin-top: 0px;
     text-indent: 2em;
     line-height: 35px;
     text-align: justify;
     text-justify: inter-ideograph;
     }
+  p.title{
+    border-bottom:1px solid ;
+    margin-left: 25%;
+    margin-right: 25%;
+  }
   p.first:first-letter{
     font-size: 40px;
   }
@@ -40,19 +54,20 @@
     bottom:           45px;
     left:            200px;
     font-size:        26px;
+    font-weight: normal;
     transform:rotate(270deg);
     color: white;
   }
   </style>
   </head>
-  <body>
+  <body onload = "resizeTitle();" onresize = "resizeTitle();">
   <div id = 'bianlan'>
     <span id = 'wenzi'>
       BiiHug
     </span>
   </div>
   <div id="title">
-    <p>低端全球化</p>
+    <p class="title">低端全球化</p>
   </div>
   <div id="main">
 <p class="first">广州火车站北面被数个大大小小的皮革皮具城包围。6 月中旬，一轮“淡季”将近尾声，穆斯林斋月刚结束，大批来自非洲的采购商人们还没抵达广州。一个星期天的午后，三元里附近的马路有些空空荡荡。</p>
