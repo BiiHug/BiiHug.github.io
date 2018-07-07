@@ -7,6 +7,10 @@
   <script type="text/javascript">
   function resizeTitle() {
     document.getElementById('title').style.width = main.clientWidth-70 + "px";
+    document.getElementById('titlepic').style.width = main.clientWidth + "px";
+    document.getElementById('titlepic').style.height = (document.body.clientHeight)*0.45 + "px";
+    document.getElementById("title").style.paddingTop = titlepic.height+50 + "px";
+    document.getElementById("main").style.paddingTop = titlepic.height+150 + "px";
   }
   </script>
   <style type='text/css'>
@@ -18,17 +22,24 @@
   html,body{height:100%}
   #title{
     color: #BBBBBB;
-    font-size:        30px;
+    font-size:        25px;
     position: absolute;
-    left: 280px;
+    left: 270px;
     text-align: center;
-    padding: 100px 35px 35px 35px;
+    padding: 230px 35px 35px 35px;
   }
+  #pic{
+    position: absolute;
+    left: 270px;
+    margin: 0px;
+    padding: 35px 0px 10px 0px;
+  }
+
   #main{
     color: #333333;
     position: absolute;
-    left: 280px;
-    padding: 210px 35px 35px 35px;
+    left: 270px;
+    padding: 320px 35px 35px 35px;
     margin-top: 0px;
     text-indent: 2em;
     line-height: 35px;
@@ -65,6 +76,9 @@
     <span id = 'wenzi'>
       BiiHug
     </span>
+  </div>
+  <div id="pic">
+    <img id ="titlepic" src='img/1.png'>
   </div>
   <div id="title">
     <p class="title">低端全球化</p>
