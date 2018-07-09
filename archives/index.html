@@ -4,6 +4,11 @@
   <title>Bii</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <script type="text/javascript">
+  function resizeElements() {
+    document.getElementById("list").style.paddingTop = wel.clientHeight+10 + "px";
+  }
+  </script>
   <style type='text/css'>
   body{margin: 0px;
       font-family: Times;}
@@ -25,21 +30,20 @@
     color: white;
   }
   li:hover{
-    background-color: #106AC7;
+    background-color: rgba(0,0,0,0.7);
     transition:background-color 0.5s linear;
   }
   #back {
-    position: fixed;
-    width: 100%;
-    height: 100%;
+    height: 1440px;
     z-index: -1;
     background-image: url("img/index/1.png");
     background-position: 30% 30%;
   }
   #wel {
-    margin-left: 30%;
-    margin-right: 30%;
-    padding-top: 20%;
+    position: fixed;
+    left: 30%;
+    right: 30%;
+    padding-top: 25%;
     padding-bottom: 10px;
     text-align: center;
     border-bottom:1px solid ;
@@ -47,27 +51,29 @@
     font-size: 50px;
   }
   #list {
+    position: fixed;
     color: white;
-    margin-left: 30%;
-    margin-right: 30%;
+    left: 30%;
+    right: 30%;
+    padding-top: 300px;
     font-size: 20px;
     text-align: center;
   }
   </style>
   </head>
-  <body>
+  <body onload="resizeElements();" onresize="resizeElements();">
     <div id = "back">
+      <div id = "wel">
+        BiiHug
+      </div>
+      <ul id = "list">
+        <li>
+          <a href="articles/1.html">低端城市化</a>
+        </li>
+        <li>
+          公路旅行计划
+        </li>
+      </ul>
     </div>
-    <div id = "wel">
-      BiiHug
-    </div>
-    <ul id = "list">
-      <li>
-        <a href="articles/1.html">低端城市化</a>
-      </li>
-      <li>
-        公路旅行计划
-      </li>
-    </ul>
   </body>
 </html>
