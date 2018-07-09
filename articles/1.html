@@ -7,8 +7,13 @@
   <script type="text/javascript">
   function resizeTitle() {
     document.getElementById('title').style.width = main.clientWidth-70 + "px";
-    document.getElementById("title").style.paddingTop = titlepic.height+50 + "px";
-    document.getElementById("main").style.paddingTop = titlepic.height+150 + "px";
+  }
+  function resizeFont() {
+    if (document.body.clientWidth > 700){
+      document.getElementById("main").style.fontSize = "17px";
+    } else {
+      document.getElementById("main").style.fontSize = "15px";
+    }
   }
   </script>
   <style type='text/css'>
@@ -81,7 +86,7 @@
   }
   </style>
   </head>
-  <body onload = "resizeTitle();" onresize = "resizeTitle();">
+  <body onload = "resizeTitle(); resizeFont();" onresize = "resizeTitle(); resizeFont();">
   <div id = 'dinglan'>
     <span id = 'wenzi'>
       <a class="nav" href="../index.html">BiiHug</a>
