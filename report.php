@@ -9,21 +9,15 @@
   <h2>Aliens Abducted Me - Report an Abduction</h2>
 
 <?php
-  $name = $_POST['firstname'] . ' ' . $_POST['lastname'];
-  $when_it_happened = $_POST['whenithappened'];
-  $how_long = $_POST['howlong'];
-  $how_many = $_POST['howmany'];
-  $alien_description = $_POST['aliendescription'];
-  $what_they_did = $_POST['whattheydid'];
-  $fang_spotted = $_POST['fangspotted'];
-  $email = $_POST['email'];
-  $other = $_POST['other'];
-
-  $to = 'owen@aliensabductedme.com';  $subject = 'Aliens Abducted Me - Abduction Report';  $msg = "$name was abducted $when_it_happened and was gone for $how_long.\n" .    "Number of aliens: $how_many\n" .
-    "Alien description: $alien_description\n" .
-    "What they did: $what_they_did\n" .    "Fang spotted: $fang_spotted\n" .
-    "Other comments: $other";
-  mail($to, $subject, $msg, 'From:' . $email);
+  $name = $_GET['firstname'] . ' ' . $_GET['lastname'];
+  $when_it_happened = $_GET['whenithappened'];
+  $how_long = $_GET['howlong'];
+  $how_many = $_GET['howmany'];
+  $alien_description = $_GET['aliendescription'];
+  $what_they_did = $_GET['whattheydid'];
+  $fang_spotted = $_GET['fangspotted'];
+  $email = $_GET['email'];
+  $other = $_GET['other'];
 
   echo 'Thanks for submitting the form.<br />';
   echo 'You were abducted ' . $when_it_happened;
