@@ -38,7 +38,6 @@
 
   #main{
     color: #333333;
-    position: absolute;
     padding: 100px 37px 35px 37px;
     margin-top: 0px;
     text-indent: 2em;
@@ -178,5 +177,20 @@
 <p>谈到未来，他称有打算回到尼日利亚从政，至于儿子，“那是属于他们这一代人需要继续解决的问题了！或许，需要好几代人。”</p>
 <p><br></p>
 </div>
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: 'location.href', // 可选。默认为 location.href
+  owner: 'BiiHug',
+  repo: 'BiiHug.github.io',
+  oauth: {
+    client_id: '2660b2286a9cd7fa5c82',
+    client_secret: '9da06908b2323e5f2f0c2f97b8ec15ac148b4b40',
+  },
+})
+gitment.render('container')
+</script>
   </body>
 </html>
