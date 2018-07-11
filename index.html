@@ -9,6 +9,13 @@
     document.getElementById("list").style.paddingTop = wel.clientHeight+10 + "px";
   }
   function locate(){ window.location.hash = "#acor";}
+  function resizeFont() {
+    if (document.body.clientWidth > 700){
+      document.getElementById("wel").style.fontSize = "45px";
+    } else {
+      document.getElementById("wel").style.fontSize = "36px";
+    }
+  }
   </script>
   <style type='text/css' onload="resizeElements(); locate();">
   body{margin: 0px;
@@ -16,7 +23,6 @@
   ul {
     padding:0;
     margin-top: 2px;
-    background-color: rgba(0,0,0,0.4);
   }
   li {
     padding-top: 10px;
@@ -37,9 +43,16 @@
   }
   #back {
     height: 1440px;
-    z-index: -1;
+    z-index: -2;
     background-image: url("img/index/1.png");
     background-position: 35%;
+  }
+  #backmengban {
+    height: 1440px;
+    position: fixed;
+    width: 100%;
+    z-index: 0;
+    background-color: rgba(0,0,0,0.4);
   }
   #backacor{
     width: 100%;
@@ -51,6 +64,7 @@
     left: 35%;
     right: 35%;
     top: 28%;
+    padding-top: 10px;
     padding-bottom: 10px;
     text-align: center;
     border-bottom:1px solid ;
@@ -70,7 +84,10 @@
   }
   </style>
   </head>
-  <body onresize="resizeElements();">
+  <body onresize="resizeElements(); resizeFont();">
+    <div id="backmengban">
+    <br />
+    </div>
     <div id = "back">
       <div id="backacor">
         <p id="acor"><br /></p>
