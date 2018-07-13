@@ -26,11 +26,15 @@
       $("#pic").addClass("pic3").removeClass("pic2");
       $("#title").addClass("title3").removeClass("title2");
       $("#main").addClass("main3").removeClass("main2");
+      $("#comment").addClass("comment2").removeClass("comment1");
+      $("#bianlan").addClass("bianlan2").removeClass("bianlan1");
       document.getElementById("fuzhu").style.display = "inline";
     } else {
       $("#pic").addClass("pic2").removeClass("pic3");
       $("#title").addClass("title2").removeClass("title3");
       $("#main").addClass("main2").removeClass("main3");
+      $("#comment").addClass("comment1").removeClass("comment2");
+      $("#bianlan").addClass("bianlan1").removeClass("bianlan2");
       document.getElementById("fuzhu").style.display = "none";
     }
   }
@@ -66,7 +70,7 @@
   .title3{
     position: absolute;
     left: 340px;
-    right: 20px;
+    right: -280px;
     padding-top: 380px;
   }
   #pic{
@@ -90,11 +94,10 @@
   .pic3{
     position: absolute;
     left: 320px;
-    right: 0px;
+    right: -300px;
   }
   #main{
     color: #333333;
-    padding-right: 30px;
     padding-bottom: 10px;
     margin-top: 0px;
     text-indent: 2em;
@@ -105,21 +108,30 @@
   .main1{
     padding-top: 400px;
     padding-left: 30px;
+    padding-right: 30px;
   }
   .main2{
     padding-top: 450px;
     padding-left: 30px;
+    padding-right: 30px;
   }
   .main3{
     padding-top: 450px;
     padding-left: 350px;
+    padding-right: -270px;
   }
 
   #comment{
     margin: 0;
+    }
+  .comment1{
     padding-left: 25px;
     padding-right: 25px;
-    }
+  }
+  .comment2 {
+    padding-left: 325px;
+    padding-right: -275px;
+  }
   p.title{
     border-bottom:1px solid ;
     margin-left: 25%;
@@ -139,12 +151,6 @@
     width: 100%;
     height: 45px;
     z-index: 99;
-  }
-  .hide {
-    top: -50px;
-  }
-  .show {
-    top: 0;
   }
   #wenzi {
     position:         absolute;
@@ -168,6 +174,19 @@
   #fuzhu{
     display: none;
   }
+  #bianlan {
+    position: fixed;
+    top: 45px;
+    background-color: rgba(0,0,0,0.65);
+    width: 310px;
+    height: 100%;
+  }
+  .bianlan1{
+    left: -310px;
+  }
+  .bianlan2{
+    left: 0px;
+  }
   </style>
   </head>
   <body onresize = "resizeFont();">
@@ -179,6 +198,8 @@
       <img src="../icon/side1.png" onclick="sidepush();">
       <img id = "fuzhu"></img>
     </span>
+  </div>
+  <div id="bianlan" class="bianlan1">
   </div>
   <div id="pic">
   </div>
