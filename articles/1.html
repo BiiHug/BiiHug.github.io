@@ -28,6 +28,7 @@
       $("#main").addClass("main3").removeClass("main2");
       $("#comment").addClass("comment2").removeClass("comment1");
       $("#bianlan").addClass("bianlan2").removeClass("bianlan1");
+      document.getElementById("sideicon").src = "../icon/side2.png";
       document.getElementById("fuzhu").style.display = "inline";
     } else {
       $("#pic").addClass("pic2").removeClass("pic3");
@@ -35,6 +36,7 @@
       $("#main").addClass("main2").removeClass("main3");
       $("#comment").addClass("comment1").removeClass("comment2");
       $("#bianlan").addClass("bianlan1").removeClass("bianlan2");
+      document.getElementById("sideicon").src = "../icon/side1.png";
       document.getElementById("fuzhu").style.display = "none";
     }
   }
@@ -54,6 +56,10 @@
     padding-left: 30px;
     padding-right: 30px;
     padding-bottom: 35px;
+    transition:left 0.5s;
+    -moz-transition:left 0.5s; /* Firefox 4 */
+    -webkit-transition:left 0.5s; /* Safari and Chrome */
+    -o-transition:left 0.5s;
   }
   .title1{
     position: absolute;
@@ -69,8 +75,8 @@
   }
   .title3{
     position: absolute;
-    left: 340px;
-    right: -280px;
+    left: 230px;
+    right: -210px;
     padding-top: 380px;
   }
   #pic{
@@ -80,6 +86,10 @@
     background-clip: padding-box;
     padding-top: 300px;
     margin: 80px 20px 0px 20px;
+    transition:left 0.5s;
+    -moz-transition:left 0.5s; /* Firefox 4 */
+    -webkit-transition:left 0.5s; /* Safari and Chrome */
+    -o-transition:left 0.5s;
   }
   .pic1{
     position: absolute;
@@ -93,8 +103,8 @@
   }
   .pic3{
     position: absolute;
-    left: 320px;
-    right: -300px;
+    left: 250px;
+    right: -230px;
   }
   #main{
     color: #333333;
@@ -104,6 +114,10 @@
     line-height: 35px;
     text-align: justify;
     text-justify: inter-ideograph;
+    transition:padding-left 0.5s;
+    -moz-transition:padding-left 0.5s; /* Firefox 4 */
+    -webkit-transition:padding-left 0.5s; /* Safari and Chrome */
+    -o-transition:padding-left 0.5s;
     }
   .main1{
     padding-top: 400px;
@@ -117,25 +131,30 @@
   }
   .main3{
     padding-top: 450px;
-    padding-left: 350px;
-    padding-right: -270px;
+    padding-left: 280px;
+    padding-right: -200px;
   }
 
   #comment{
     margin: 0;
+    padding-top: 5px;
+    transition:padding-left 0.5s;
+    -moz-transition:padding-left 0.5s; /* Firefox 4 */
+    -webkit-transition:padding-left 0.5s; /* Safari and Chrome */
+    -o-transition:padding-left 0.5s;
     }
   .comment1{
     padding-left: 25px;
     padding-right: 25px;
   }
   .comment2 {
-    padding-left: 325px;
-    padding-right: -275px;
+    padding-left: 255px;
+    padding-right: -205px;
   }
   p.title{
     border-bottom:1px solid ;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 20%;
+    margin-right: 20%;
   }
   p.first:first-letter{
     font-size: 40px;
@@ -166,7 +185,7 @@
   #side{
     position:         absolute;
     bottom:           8px;
-    top:              5px;
+    top:              8px;
     left:             15px;
     font-size:        26px;
     text-align: center;
@@ -177,15 +196,42 @@
   #bianlan {
     position: fixed;
     top: 45px;
-    background-color: rgba(0,0,0,0.65);
-    width: 310px;
+    background-color: rgba(0,0,0,0.9);
+    width: 240px;
     height: 100%;
+    transition:left 0.5s;
+    -moz-transition:left 0.5s; /* Firefox 4 */
+    -webkit-transition:left 0.5s; /* Safari and Chrome */
+    -o-transition:left 0.5s;
   }
   .bianlan1{
-    left: -310px;
+    left: -240px;
   }
   .bianlan2{
     left: 0px;
+  }
+  #list {
+    position: absolute;
+    color: white;
+    top: 10px;
+    left: 0px;
+    right: 0px;
+    font-size: 20px;
+    text-align: center;
+  }
+  ul {
+    padding:0;
+    margin-top: 10px;
+  }
+  li {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    list-style:none;
+  }
+  li:hover{
+    background-color: rgba(0,0,0,0.7);
+    transition:background-color 0.5s linear;
   }
   </style>
   </head>
@@ -195,11 +241,14 @@
       <a class="nav" href="../index.html">BiiHug</a>
     </span>
     <span id="side">
-      <img src="../icon/side1.png" onclick="sidepush();">
+      <img id = "sideicon" src="../icon/side1.png" onclick="sidepush();">
       <img id = "fuzhu"></img>
     </span>
   </div>
   <div id="bianlan" class="bianlan1">
+    <ul id="list">
+      <li>往期文章</li>
+    </ul>
   </div>
   <div id="pic">
   </div>
@@ -207,7 +256,7 @@
     <p class="title">低端全球化</p>
   </div>
   <div id="main">
-<p class="first">是广州火车站北面被数个大大小小的皮革皮具城包围。6 月中旬，一轮“淡季”将近尾声，穆斯林斋月刚结束，大批来自非洲的采购商人们还没抵达广州。一个星期天的午后，三元里附近的马路有些空空荡荡。</p>
+<p class="first">广州火车站北面被数个大大小小的皮革皮具城包围。6 月中旬，一轮“淡季”将近尾声，穆斯林斋月刚结束，大批来自非洲的采购商人们还没抵达广州。一个星期天的午后，三元里附近的马路有些空空荡荡。</p>
 <p>三元里是西非商人的聚集地。一栋名为“国太鞋城”的批发市场里，9 岁的 Abby 和 6 岁的妹妹在格子铺间奔跑打闹。有的铺头卖着看不出标牌的皮质钱包，有的堆满了各式女鞋，鞋城的楼上是西非人的贸易公司和物流代理。</p>
 <p>市场里总能看到各个年龄层的孩子，小的在婴儿车里，大的趴在柜台上写作业。无论中非，商人们总喜欢把孩子带在身边，生意、教育两不误。<br></p>
 <p>市场是 Abby 们的餐厅、书房和游乐场，几乎每一间格子铺的店主都和他们相熟。</p>
