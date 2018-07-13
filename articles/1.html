@@ -7,18 +7,20 @@
   <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
   <script type="text/javascript">
   function resizeFont() {
-    if (document.body.clientWidth > 700){
-      document.getElementById("main").style.fontSize = "18px";
-      $("#pic").addClass("pic1").removeClass("pic2");
-      $("#title").addClass("title1").removeClass("title2");
-      $("#main").addClass("main1").removeClass("main2");
-      document.getElementById("side").style.visibility = "hidden";
-    } else {
-      document.getElementById("main").style.fontSize = "16px";
-      $("#pic").addClass("pic2").removeClass("pic1");
-      $("#title").addClass("title2").removeClass("title1");
-      $("#main").addClass("main2").removeClass("main1");
-      document.getElementById("side").style.visibility = "visible";
+    if (document.getElementById("fuzhu").style.display == "none") {
+      if (document.body.clientWidth > 700){
+        document.getElementById("main").style.fontSize = "18px";
+        $("#pic").addClass("pic1").removeClass("pic2");
+        $("#title").addClass("title1").removeClass("title2");
+        $("#main").addClass("main1").removeClass("main2");
+        document.getElementById("side").style.visibility = "hidden";
+      } else {
+        document.getElementById("main").style.fontSize = "16px";
+        $("#pic").addClass("pic2").removeClass("pic1");
+        $("#title").addClass("title2").removeClass("title1");
+        $("#main").addClass("main2").removeClass("main1");
+        document.getElementById("side").style.visibility = "visible";
+      }
     }
   }
   function sidepush() {
@@ -190,9 +192,6 @@
     font-size:        26px;
     text-align: center;
   }
-  #fuzhu{
-    display: none;
-  }
   #bianlan {
     position: fixed;
     top: 45px;
@@ -229,7 +228,7 @@
     padding-left: 0px;
     list-style:none;
   }
-  li:hover{
+  li.side:hover{
     background-color: rgba(0,0,0,0.7);
     transition:background-color 0.5s linear;
   }
@@ -242,12 +241,12 @@
     </span>
     <span id="side">
       <img id = "sideicon" src="../icon/side1.png" onclick="sidepush();">
-      <img id = "fuzhu"></img>
+      <img id = "fuzhu" style="display: none"></img>
     </span>
   </div>
   <div id="bianlan" class="bianlan1">
     <ul id="list">
-      <li>往期文章</li>
+      <li class="side">往期文章</li>
     </ul>
   </div>
   <div id="pic">
@@ -336,7 +335,7 @@
 <p>谈到未来，他称有打算回到尼日利亚从政，至于儿子，“那是属于他们这一代人需要继续解决的问题了！或许，需要好几代人。”</p>
 <p><br></p>
 </div>
-<div id="comment">
+<div id="comment" class="comment1">
 <div id="container"></div>
 </div>
 <link rel="stylesheet" type="text/css" href="../css/comment/my.css">
