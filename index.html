@@ -4,6 +4,7 @@
   <title>Bii</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
   <script type="text/javascript" >
   function resizeElements() {
     document.getElementById("list").style.paddingTop = wel.clientHeight+3 + "px";
@@ -14,6 +15,17 @@
       document.getElementById("wel").style.fontSize = "45px";
     } else {
       document.getElementById("wel").style.fontSize = "36px";
+    }
+  }
+  function sidepush() {
+    if (document.getElementById("fuzhu").style.display == "none") {
+      $("#bianlan").addClass("bianlan2").removeClass("bianlan1");
+      document.getElementById("sideicon").src = "./icon/side2.png";
+      document.getElementById("fuzhu").style.display = "inline";
+    } else {
+      $("#bianlan").addClass("bianlan1").removeClass("bianlan2");
+      document.getElementById("sideicon").src = "./icon/side1.png";
+      document.getElementById("fuzhu").style.display = "none";
     }
   }
   </script>
@@ -59,6 +71,60 @@
     padding-top: 650px;
     z-index: -99;
   }
+  #dinglan {
+    position: fixed;
+    top: 0px;
+    background-color: rgba(0,0,0,0.95);
+    width: 100%;
+    height: 45px;
+    z-index: 99;
+  }
+  #wenzi {
+    position:         absolute;
+    bottom:           8px;
+    right:            0px;
+    left:             0px;
+    font-family:      Times;
+    font-size:        26px;
+    font-weight: normal;
+    color: white;
+    text-align: center;
+  }
+  #side{
+    position:         absolute;
+    bottom:           8px;
+    top:              8px;
+    left:             15px;
+    font-size:        26px;
+    text-align: center;
+  }
+  #bianlan {
+    position: fixed;
+    top: 45px;
+    background-color: rgba(0,0,0,0.9);
+    width: 240px;
+    height: 100%;
+    z-index: 2;
+    transition:left 0.5s;
+    -moz-transition:left 0.5s; /* Firefox 4 */
+    -webkit-transition:left 0.5s; /* Safari and Chrome */
+    -o-transition:left 0.5s;
+  }
+  .bianlan1{
+    left: -240px;
+  }
+  .bianlan2{
+    left: 0px;
+  }
+  #sidelist {
+    position: absolute;
+    color: white;
+    top: 10px;
+    left: 0px;
+    right: 0px;
+    font-size: 20px;
+    text-align: center;
+  }
   #wel {
     position: fixed;
     left: 35%;
@@ -87,6 +153,20 @@
   <body onresize="resizeElements(); resizeFont();">
     <div id="backmengban">
     <br />
+    </div>
+    <div id = 'dinglan'>
+      <span id = 'wenzi'>
+        <a class="nav" href="./index.html">BiiHug</a>
+      </span>
+      <span id="side">
+        <img id = "sideicon" src="./icon/side1.png" onclick="sidepush();">
+        <img id = "fuzhu" style="display: none"></img>
+      </span>
+    </div>
+    <div id="bianlan" class="bianlan1">
+      <ul id="sidelist">
+        <li class="side">往期文章</li>
+      </ul>
     </div>
     <div id = "back">
       <div id="backacor">
