@@ -7,7 +7,7 @@
   <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
   <script type="text/javascript" >
   function resizeElements() {
-    document.getElementById("list").style.paddingTop = wel.clientHeight+3 + "px";
+    document.getElementById("list").style.marginTop = wel.clientHeight+3 + "px";
   }
   function locate(){ window.location.hash = "#acor";}
   function resizeFont() {
@@ -31,7 +31,7 @@
   </script>
   <style type='text/css' onload="resizeElements(); locate(); resizeFont();">
   body{margin: 0px;
-      font-family: Times;}
+      font-family: Arial,Hiragino Sans GB,冬青黑,Microsoft YaHei,微软雅黑,SimSun,宋体,Helvetica,Tahoma,Arial sans-serif;}
   ul {
     padding:0;
     margin-top: 2px;
@@ -39,19 +39,27 @@
   li {
     padding-top: 10px;
     padding-bottom: 10px;
-    padding-left: 0px;
     list-style:none;
   }
-  a{
+  li.side{
+    margin-left: 20px;
+    margin-right: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+  }
+  li.main:hover{
+    background-color: rgba(0,0,0,0.7);
+    transition:background-color 0.5s linear;
+  }
+  li.side:hover{
+    color: rgba(255,255,255,0.7);
+    transition:color 0.2s linear;
+  }
+  a {
     color: white;
     text-decoration: none;
   }
   a:visited{
     color: white;
-  }
-  li:hover{
-    background-color: rgba(0,0,0,0.7);
-    transition:background-color 0.5s linear;
   }
   #back {
     height: 1440px;
@@ -60,13 +68,13 @@
     background-position: 35%;
   }
   #backmengban {
-    height: 1440px;
+    height: 100%;
     position: fixed;
     width: 100%;
     z-index: 0;
     background-color: rgba(0,0,0,0.4);
   }
-  #backacor{
+  #backacor {
     width: 100%;
     padding-top: 650px;
     z-index: -99;
@@ -90,7 +98,7 @@
     color: white;
     text-align: center;
   }
-  #side{
+  #side {
     position:         absolute;
     bottom:           8px;
     top:              8px;
@@ -110,10 +118,10 @@
     -webkit-transition:left 0.5s; /* Safari and Chrome */
     -o-transition:left 0.5s;
   }
-  .bianlan1{
+  .bianlan1 {
     left: -240px;
   }
-  .bianlan2{
+  .bianlan2 {
     left: 0px;
   }
   #sidelist {
@@ -144,7 +152,7 @@
     top: 28%;
     left: 30%;
     right: 30%;
-    padding-top: 300px;
+    margin-top: 300px;
     font-size: 20px;
     text-align: center;
   }
@@ -152,7 +160,6 @@
   </head>
   <body onresize="resizeElements(); resizeFont();">
     <div id="backmengban">
-    <br />
     </div>
     <div id = 'dinglan'>
       <span id = 'wenzi'>
@@ -176,10 +183,10 @@
         精选
       </div>
       <ul id = "list">
-        <li>
+        <li class="main">
           <a href="articles/1.html">低端全球化</a>
         </li>
-        <li>
+        <li class="main">
           公路旅行计划
         </li>
       </ul>
