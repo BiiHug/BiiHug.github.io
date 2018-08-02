@@ -6,17 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
   <script type="text/javascript" >
-  function resizeElements() {
-    document.getElementById("list").style.marginTop = wel.clientHeight+3 + "px";
-  }
-  function locate(){ window.location.hash = "#acor";}
-  function resizeFont() {
-    if (document.body.clientWidth > 700){
-      document.getElementById("wel").style.fontSize = "45px";
-    } else {
-      document.getElementById("wel").style.fontSize = "36px";
-    }
-  }
   function sidepush() {
     if (document.getElementById("fuzhu").style.display == "none") {
       $("#bianlan").addClass("bianlan2").removeClass("bianlan1");
@@ -29,7 +18,11 @@
     }
   }
   </script>
-  <style type='text/css' onload="resizeElements(); locate(); resizeFont();">
+  <style type='text/css'>
+  :root{
+  --width: 240px;
+  --height: 280px;
+}
   body{margin: 0px;
       font-family: Arial,Hiragino Sans GB,冬青黑,Microsoft YaHei,微软雅黑,SimSun,宋体,Helvetica,Tahoma,Arial sans-serif;}
   ul {
@@ -61,24 +54,6 @@
   a:visited{
     color: white;
   }
-  #back {
-    height: 1440px;
-    z-index: -2;
-    background-image: url("img/index/1.png");
-    background-position: 35%;
-  }
-  #backmengban {
-    height: 100%;
-    position: fixed;
-    width: 100%;
-    z-index: 0;
-    background-color: rgba(0,0,0,0.4);
-  }
-  #backacor {
-    width: 100%;
-    padding-top: 650px;
-    z-index: -99;
-  }
   #dinglan {
     position: fixed;
     top: 0px;
@@ -98,6 +73,129 @@
     color: white;
     text-align: center;
   }
+  #back{
+      margin: 65px auto 0;
+      overflow:hidden;
+      transition: width 0.6s;
+      }
+  @media screen and (min-width: 540px) and (max-width: 790px) {
+    #back{
+          width: 500px;
+        }
+    }
+  @media screen and (min-width: 790px) and (max-width: 1040px) {
+    #back{
+         width: 750px;
+        }
+    }
+  @media screen and (min-width: 1040px) and (max-width: 1290px) {
+    #back{
+          width: 1000px;
+        }
+    }
+  @media screen and (min-width: 1290px) and (max-width: 1540px) {
+    #back{
+          width: 1250px;
+        }
+    }
+
+  .pick {
+    float: left;
+    border-radius: 5px;
+    transition: all 0.4s;
+    margin: 10px 5px 10px 5px;
+    height: var(--height);
+    box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+    overflow: hidden;
+  }
+  .pick1{
+    width: calc(var(--width)*2 + 10px);
+  }
+  .pick2{
+    width: var(--width);
+  }
+  .pick:hover{
+    box-shadow: 0 4px 4px rgba(0,0,0,0.2);
+  }
+  .pick:hover > .pickframe > .pickcover {
+    transform: scale(1.1);
+  }
+  .pick:hover > .pickframe > .pickinfo2 {
+    height: calc(var(--height)*0.3131);
+  }
+  .pick:hover > .pickframe > .pickinfo1 > .pickinfo1_1 {
+    margin-right: 320px;
+  }
+  .pick:hover > .pickframe > .pickinfo2 > .pickinfo2_1 {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .pickframe{
+    position: relative;
+    width: 100%;
+    height: var(--height);
+  }
+  .pickcover{
+    width: 100%;
+    border-radius: 5px 5px 0px 0px;
+    background-size: cover;
+    background-position:center;
+    transition: all 1s;
+  }
+  .pickcover1{
+    padding-bottom: var(--height);
+  }
+  .pickcover2{
+    padding-bottom: calc(var(--height)*0.75);
+  }
+  .pickinfo{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: calc(var(--height)*0.2424);
+    transition: height 0.5s;
+    z-index: 2;
+    background: white;
+  }
+  .pickinfo1{
+    background: rgba(0,0,0,0.6);
+  }
+  .pickinfo2{
+    background: white;
+  }
+  .pickinfo1_1{
+    margin-top: 12px;
+    margin-left: 25px;
+    margin-right: 420px;
+    height: 0px;
+    transition: all 1.5s;
+    color: white;
+    border-top: 3px solid;
+  }
+  .pickinfo2_1{
+    margin-top: 12px;
+    margin-left: 40%;
+    margin-right: 40%;
+    height: 0px;
+    transition: all 1.5s;
+    color: rgba(0,0,0,1);
+    border-top: 3px solid;
+  }
+  .pickinfo1_2{
+    margin-top: 10px;
+    margin-left: 25px;
+    font-size: 22px;
+    color: white;
+  }
+  .pickinfo2_2{
+    margin-top: 12px;
+    margin-left: 15px;
+    margin-right: 15px;
+    text-align: center;
+    font-size: 22px;
+    color: rgba(0,0,0,0.6);
+  }
+
   #side {
     position:         absolute;
     bottom:           8px;
@@ -133,19 +231,6 @@
     font-size: 20px;
     text-align: center;
   }
-  #wel {
-    position: fixed;
-    left: 35%;
-    right: 35%;
-    top: 28%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-align: center;
-    border-bottom:1px solid ;
-    color: white;
-    font-size: 45px;
-    z-index: 1;
-  }
   #list {
     position: fixed;
     color: white;
@@ -159,8 +244,6 @@
   </style>
   </head>
   <body onresize="resizeElements(); resizeFont();">
-    <div id="backmengban">
-    </div>
     <div id = 'dinglan'>
       <span id = 'wenzi'>
         <a class="nav" href="./index.html">BiiHug</a>
@@ -170,25 +253,39 @@
         <img id = "fuzhu" style="display: none"></img>
       </span>
     </div>
+    <div id="back">
+      <div class="pick pick1">
+        <div class="pickframe">
+          <div class="pickcover pickcover1" style="background-image: url('./img/1.png');"></div>
+          <div class="pickinfo pickinfo1">
+            <div class="pickinfo1_1"></div>
+            <div class="pickinfo1_2">低端城市化</div>
+          </div>
+        </div>
+      </div>
+      <div class="pick pick2">
+        <div class="pickframe">
+          <div class="pickcover pickcover2" style="background-image: url('./img/1.png');"></div>
+          <div class="pickinfo pickinfo2">
+            <div class="pickinfo2_1"></div>
+            <div class="pickinfo2_2">低端城市化</div>
+          </div>
+        </div>
+      </div>
+      <div class="pick pick2">
+        <div class="pickframe">
+          <div class="pickcover pickcover2" style="background-image: url('./img/1.png');"></div>
+          <div class="pickinfo pickinfo2">
+            <div class="pickinfo2_1"></div>
+            <div class="pickinfo2_2">低端城市化</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
     <div id="bianlan" class="bianlan1">
       <ul id="sidelist">
         <li class="side">往期文章</li>
-      </ul>
-    </div>
-    <div id = "back">
-      <div id="backacor">
-        <p id="acor"><br /></p>
-      </div>
-      <div id = "wel">
-        精选
-      </div>
-      <ul id = "list">
-        <li class="main">
-          <a href="articles/1.html">低端全球化</a>
-        </li>
-        <li class="main">
-          <a href="articles/2.html">杨振宁：盛名之下</a>
-        </li>
       </ul>
     </div>
   </body>
