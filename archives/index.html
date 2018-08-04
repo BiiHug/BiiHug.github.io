@@ -6,6 +6,106 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
   <script type="text/javascript" >
+  function Entry(id,type, cover, title){
+    this.id = id;
+    this.type = type;
+    this.cover = cover;
+    this.title = title;
+
+    this.toHTML = function(){
+      var blogHTML = "";
+      if (this.type == 1){
+        blogHTML += '<div class="pick pick1" id="entry'+this.id+'">'+
+          '<div class="pickframe">'+
+            '<div class="pickcover pickcover1" style="background-image: url('+this.cover+');"></div>'+
+            '<div class="pickinfo pickinfo1">'+
+            '<div class="pickinfo1_1"></div>'+
+            '<div class="pickinfo1_2">'+this.title+'</div>'+
+            '</div>'+
+          '</div>'+
+        '</div>';
+      } else if (this.type == 2) {
+        blogHTML += '<div class="pick pick2" id="entry'+this.id+'">'+
+          '<div class="pickframe">'+
+            '<div class="pickcover pickcover2" style="background-image: url('+this.cover+');"></div>'+
+            '<div class="pickinfo pickinfo2">'+
+            '<div class="pickinfo2_1"></div>'+
+            '<div class="pickinfo2_2">'+this.title+'</div>'+
+            '</div>'+
+          '</div>'+
+        '</div>';
+        }else {
+          blogHTML += '<div class="pick pick3" id="entry'+this.id+'">'+
+            '<div class="pickframe">'+
+              '<div class="pickcover pickcover3" style="background-image: url('+this.cover+');"></div>'+
+              '<div class="pickinfo pickinfo3">'+
+              '<div class="pickinfo3_1"></div>'+
+              '<div class="pickinfo3_2">'+this.title+'</div>'+
+              '</div>'+
+            '</div>'+
+          '</div>';
+      }
+      return blogHTML;
+    }
+  }
+
+    var backbody = [];
+    var Entry1 = new Entry(1,1,'./img/2.jpg','杨振宁');
+    var Entry2 = new Entry(2,2,'./img/3.jpg','低端全球化');
+    var Entry3 = new Entry(3,2,'./img/4.jpg','低端全球化');
+    var Entry4 = new Entry(4,2,'./img/5.jpg','低端全球化');
+    var Entry5 = new Entry(5,1,'./img/6.jpg','低端全球化');
+    var Entry6 = new Entry(6,2,'./img/7.gif','低端全球化');
+    var Entry7 = new Entry(7,2,'./img/8.jpg','低端全球化');
+    var Entry8 = new Entry(8,2,'./img/9.jpg','低端全球化');
+    var Entry9 = new Entry(9,1,'./img/10.jpg','低端全球化');
+    var Entry10 = new Entry(10,2,'./img/11.jpg','低端全球化');
+    var Entry11 = new Entry(11,2,'./img/12.jpg','低端全球化');
+    var Entry12 = new Entry(12,1,'./img/13.png','低端全球化');
+
+    backbody.push(Entry1);
+    backbody.push(Entry2);
+    backbody.push(Entry3);
+    backbody.push(Entry4);
+    backbody.push(Entry5);
+    backbody.push(Entry6);
+    backbody.push(Entry7);
+    backbody.push(Entry8);
+    backbody.push(Entry9);
+    backbody.push(Entry10);
+    backbody.push(Entry11);
+    backbody.push(Entry12);
+
+    var i = 1, checklist = [];
+    while (i < backbody.length) {
+      if (backbody[i].type == 1) {
+        checklist.push(backbody[i]);
+      }
+      i++;
+    }
+
+    function showEntry(){
+      var i = 0, entryListHTML = "";
+      while (i < backbody.length) {
+        entryListHTML += backbody[i].toHTML();
+        i++;
+      }
+    document.getElementById("back").innerHTML = entryListHTML;
+  }
+  function changewidth() {
+    var i = 0;
+    while (i < checklist.length){
+      var brother = document.getElementById("entry"+(checklist[i].id - 1));
+      var benzun = document.getElementById("entry"+(checklist[i].id));
+      var check = back.clientWidth +back.offsetLeft - brother.offsetWidth - brother.offsetLeft;
+      if (check == 255){
+      benzun.style.width = "240px";
+      } else {
+      benzun.style.width = "490px";
+      }
+      i++;
+    }
+  }
   function sidepush() {
     if (document.getElementById("fuzhu").style.display == "none") {
       $("#bianlan").addClass("bianlan2").removeClass("bianlan1");
@@ -113,6 +213,10 @@
   }
   .pick1{
     width: calc(var(--width)*2 + 10px);
+    transition: width 0s;
+  }
+  .pick1:after{
+    clear: right;
   }
   .pick2{
     width: var(--width);
@@ -127,7 +231,7 @@
     height: calc(var(--height)*0.3131);
   }
   .pick:hover > .pickframe > .pickinfo1 > .pickinfo1_1 {
-    margin-right: 320px;
+    margin-right: 50%;
   }
   .pick:hover > .pickframe > .pickinfo2 > .pickinfo2_1 {
     margin-left: 10%;
@@ -168,8 +272,8 @@
   }
   .pickinfo1_1{
     margin-top: 12px;
-    margin-left: 25px;
-    margin-right: 420px;
+    margin-left: 5%;
+    margin-right: 75%;
     height: 0px;
     transition: all 1.5s;
     color: white;
@@ -186,7 +290,7 @@
   }
   .pickinfo1_2{
     margin-top: 10px;
-    margin-left: 25px;
+    margin-left: 5%;
     font-size: 22px;
     color: white;
   }
@@ -200,14 +304,14 @@
   }
   @media screen and (max-width: 540px) {
     #back{
-          width: 360px;
+          width: 330px;
         }
     :root{
-      --width: 350px;
-      --height: 400px;
+      --width: 320px;
+      --height: 360px;
     }
     .pick1{
-      width: var(--width);
+      width: var(--width) !important;
       height: var(--height);
     }
     .pick2{
@@ -216,15 +320,15 @@
     }
     .pickinfo1_1{
       margin-top: 12px;
-      margin-left: 25px;
-      margin-right: 280px;
+      margin-left: 5%;
+      margin-right: 240px;
       height: 0px;
       transition: all 1.5s;
       color: white;
       border-top: 3px solid;
     }
     .pick:hover > .pickframe > .pickinfo1 > .pickinfo1_1 {
-      margin-right: 180px;
+      margin-right: 160px;
     }
 
     .pick:active{
@@ -237,16 +341,12 @@
       height: calc(var(--height)*0.3131);
     }
     .pick:active > .pickframe > .pickinfo1 > .pickinfo1_1 {
-      margin-right: 320px;
+      margin-right: 160px;
     }
     .pick:active > .pickframe > .pickinfo2 > .pickinfo2_1 {
       margin-left: 10%;
       margin-right: 10%;
     }
-    .pick:active > .pickframe > .pickinfo1 > .pickinfo1_1 {
-      margin-right: 180px;
-    }
-  }
   #side {
     position:         absolute;
     bottom:           8px;
@@ -294,7 +394,7 @@
   }
   </style>
   </head>
-  <body onload="dianji();">
+  <body onload="dianji(); showEntry();" onresize="changewidth();">
     <div id = 'dinglan'>
       <span id = 'wenzi'>
         <a class="nav" href="./index.html">BiiHug</a>
@@ -305,34 +405,6 @@
       </span>
     </div>
     <div id="back">
-      <div class="pick pick1">
-        <div class="pickframe">
-          <div class="pickcover pickcover1" style="background-image: url('./img/1.png');"></div>
-          <div class="pickinfo pickinfo1">
-            <div class="pickinfo1_1"></div>
-            <div class="pickinfo1_2">低端城市化</div>
-          </div>
-        </div>
-      </div>
-      <div class="pick pick2">
-        <div class="pickframe">
-          <div class="pickcover pickcover2" style="background-image: url('./img/1.png');"></div>
-          <div class="pickinfo pickinfo2">
-            <div class="pickinfo2_1"></div>
-            <div class="pickinfo2_2">低端城市化</div>
-          </div>
-        </div>
-      </div>
-      <div class="pick pick2">
-        <div class="pickframe">
-          <div class="pickcover pickcover2" style="background-image: url('./img/1.png');"></div>
-          <div class="pickinfo pickinfo2">
-            <div class="pickinfo2_1"></div>
-            <div class="pickinfo2_2">低端城市化</div>
-          </div>
-        </div>
-      </div>
-
     </div>
     <div id="bianlan" class="bianlan1">
       <ul id="sidelist">
