@@ -15,8 +15,9 @@
     this.toHTML = function(){
       var blogHTML = "";
       if (this.type == 1){
-        blogHTML += '<div class="pick pick1" id="entry'+this.id+'">'+
+        blogHTML += '<div class="pick pick1" id="entry'+this.id+'"onmousedown="tuozhan(this); changewidth();" onmouseup="tuozhan2(this);">'+
           '<div class="pickframe">'+
+            '<span class="close blades thick" id="close'+this.id+'" onclick="tuozhanclick(this); setTimeout(changewidth,1000)"></span>'+
             '<div class="pickcover pickcover1" style="background-image: url('+this.cover+');"></div>'+
             '<div class="pickinfo pickinfo1">'+
             '<div class="pickinfo1_1"></div>'+
@@ -25,8 +26,9 @@
           '</div>'+
         '</div>';
       } else if (this.type == 2) {
-        blogHTML += '<div class="pick pick2" id="entry'+this.id+'">'+
+        blogHTML += '<div class="pick pick2" id="entry'+this.id+'"onmousedown="tuozhan(this);" onmouseup="tuozhan2(this); changewidth();">'+
           '<div class="pickframe">'+
+            '<span class="close blades thick" id="close'+this.id+'" onclick="tuozhanclick(this); setTimeout(changewidth,1000)"></span>'+
             '<div class="pickcover pickcover2" style="background-image: url('+this.cover+');"></div>'+
             '<div class="pickinfo pickinfo2">'+
             '<div class="pickinfo2_1"></div>'+
@@ -92,12 +94,13 @@
       }
     document.getElementById("back").innerHTML = entryListHTML;
   }
+
   function changewidth() {
     var i = 0;
     while (i < checklist.length){
       var brother = document.getElementById("entry"+(checklist[i].id - 1));
       var benzun = document.getElementById("entry"+(checklist[i].id));
-      var check = back.clientWidth +back.offsetLeft - brother.offsetWidth - brother.offsetLeft;
+      var check = back.clientWidth- brother.offsetWidth - brother.offsetLeft;
       if (check == 255){
       benzun.style.width = "240px";
       } else {
@@ -106,6 +109,40 @@
       i++;
     }
   }
+
+  function tuozhan(item) {
+    var topp = document.getElementById(item.id).offsetTop;
+    var leftt = document.getElementById(item.id).offsetLeft;
+    $(item).addClass("pick3").removeClass("pick");
+    document.getElementById(item.id).style.top = topp -10 + "px";
+    document.getElementById(item.id).style.left = leftt -10 + "px";
+  }
+  function tuozhan2(item) {
+    var clearr = document.getElementById(item.id).firstChild.childNodes;
+    $(item).addClass("pick4");
+    $("#back").css("overflow","visible");
+    clearr[1].style.paddingBottom = 280 + "px";
+    document.getElementById(item.id).style.top = $(window).scrollTop() + "px";
+    document.getElementById(item.id).style.left = 0 + "px";
+    $("#"+ item.id + "> .pickframe >.close").css("visibility","visible");
+    $(item).removeAttr("onmousedown").removeAttr("onmouseup");
+    var mengban = document.createElement("div");
+    mengban.id = "mengban";
+    document.getElementById("back").appendChild(mengban);
+  }
+
+  function tuozhanclick(item){
+    document.getElementById("back").removeChild(document.getElementById("mengban"));
+    var blockId = "entry" + (item.id).split('close')[1];
+    var thisBlock = document.getElementById(blockId);
+    $("#"+blockId).addClass("pick").removeClass("pick4").removeClass("pick3");
+    $(item).css("visibility","hidden");
+    $("#"+blockId).css("top","");
+    $("#"+blockId).css("left","");
+    $("#"+blockId).attr("onmousedown","tuozhan(this);");
+    $("#"+blockId).attr("onmouseup","tuozhan2(this);");
+  }
+
   function sidepush() {
     if (document.getElementById("fuzhu").style.display == "none") {
       $("#bianlan").addClass("bianlan2").removeClass("bianlan1");
@@ -117,17 +154,19 @@
       document.getElementById("fuzhu").style.display = "none";
     }
   }
+
   function dianji(){
     document.body.addEventListener('touchstart', function () { });
   }
+
   </script>
   <style type='text/css'>
   :root{
   --width: 240px;
   --height: 280px;
 }
-  body{margin: 0px;
-      font-family: Arial,Hiragino Sans GB,冬青黑,Microsoft YaHei,微软雅黑,SimSun,宋体,Helvetica,Tahoma,Arial sans-serif;}
+  body{ margin: 0px;
+        font-family: Arial,Hiragino Sans GB,冬青黑,Microsoft YaHei,微软雅黑,SimSun,宋体,Helvetica,Tahoma,Arial sans-serif;}
   ul {
     padding:0;
     margin-top: 2px;
@@ -137,7 +176,7 @@
     padding-bottom: 10px;
     list-style:none;
   }
-  li.side{
+  li.side {
     margin-left: 20px;
     margin-right: 20px;
     border-bottom: 1px solid rgba(255,255,255,0.4);
@@ -177,6 +216,7 @@
     text-align: center;
   }
   #back{
+      position: relative;
       margin: 65px auto 0;
       overflow:hidden;
       transition: width 0.6s;
@@ -202,25 +242,88 @@
         }
     }
 
+    @media screen and (max-width: 540px) {
+      #back{
+            width: 330px;
+          }
+      :root{
+        --width: 320px;
+        --height: 360px;
+      }
+      .pick1{
+        width: var(--width) !important;
+        height: var(--height);
+      }
+      .pick2{
+        width: var(--width);
+        height: var(--height);
+      }
+      .pickinfo1_1{
+        margin-top: 12px;
+        margin-left: 5%;
+        margin-right: 240px;
+        height: 0px;
+        transition: all 1.5s;
+        color: white;
+        border-top: 3px solid;
+      }
+      .pick:hover > .pickframe > .pickinfo1 > .pickinfo1_1 {
+        margin-right: 160px;
+      }
+
+      .pick:active{
+        box-shadow: 0 4px 4px rgba(0,0,0,0.2);
+      }
+      .pick:active > .pickframe > .pickcover {
+        transform: scale(1.1);
+      }
+      .pick:active > .pickframe > .pickinfo2 {
+        height: calc(var(--height)*0.3131);
+      }
+      .pick:active > .pickframe > .pickinfo1 > .pickinfo1_1 {
+        margin-right: 160px;
+      }
+      .pick:active > .pickframe > .pickinfo2 > .pickinfo2_1 {
+        margin-left: 10%;
+        margin-right: 10%;
+      }
+    }
+
+
   .pick {
     float: left;
     border-radius: 5px;
     transition: all 0.4s;
+    background-color: white;
     margin: 10px 5px 10px 5px;
     height: var(--height);
     box-shadow: 0 2px 2px rgba(0,0,0,0.2);
     overflow: hidden;
+    transition: width 1s,height 1s;
   }
   .pick1{
     width: calc(var(--width)*2 + 10px);
-    transition: width 0s;
-  }
-  .pick1:after{
-    clear: right;
+    transition: width 0.7s;
   }
   .pick2{
     width: var(--width);
   }
+  .pick3{
+    position: absolute;
+    border-radius: 5px;
+    background-color: white;
+    margin: 10px 5px 10px 5px;
+    z-index: 5;
+    transition: top 1.3s,left 0.7s,width 0.7s,height 0.5s;
+    box-shadow: -4px 12px 12px rgba(0,0,0,0.2);
+  }
+  .pick4{
+    width: 100% !important;
+    height: 1700px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
   .pick:hover{
     box-shadow: 0 4px 4px rgba(0,0,0,0.2);
   }
@@ -247,7 +350,7 @@
     border-radius: 5px 5px 0px 0px;
     background-size: cover;
     background-position:center;
-    transition: all 1s;
+    transition: all 1s, padding 0.7s;
   }
   .pickcover1{
     padding-bottom: var(--height);
@@ -302,52 +405,66 @@
     font-size: 22px;
     color: rgba(0,0,0,0.6);
   }
-  @media screen and (max-width: 540px) {
-    #back{
-          width: 330px;
-        }
-    :root{
-      --width: 320px;
-      --height: 360px;
-    }
-    .pick1{
-      width: var(--width) !important;
-      height: var(--height);
-    }
-    .pick2{
-      width: var(--width);
-      height: var(--height);
-    }
-    .pickinfo1_1{
-      margin-top: 12px;
-      margin-left: 5%;
-      margin-right: 240px;
-      height: 0px;
-      transition: all 1.5s;
-      color: white;
-      border-top: 3px solid;
-    }
-    .pick:hover > .pickframe > .pickinfo1 > .pickinfo1_1 {
-      margin-right: 160px;
-    }
 
-    .pick:active{
-      box-shadow: 0 4px 4px rgba(0,0,0,0.2);
-    }
-    .pick:active > .pickframe > .pickcover {
-      transform: scale(1.1);
-    }
-    .pick:active > .pickframe > .pickinfo2 {
-      height: calc(var(--height)*0.3131);
-    }
-    .pick:active > .pickframe > .pickinfo1 > .pickinfo1_1 {
-      margin-right: 160px;
-    }
-    .pick:active > .pickframe > .pickinfo2 > .pickinfo2_1 {
-      margin-left: 10%;
-      margin-right: 10%;
-    }
+  #mengban {
+    width: 100%;
+    position:fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 4;
+    overflow: hidden;
+    border-radius: 5px;
   }
+
+  .close {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 30px;
+    height: 30px;
+    visibility: hidden;
+  }
+  .close:hover::before, .close:hover::after {
+  background: #CCFFFF;
+  }
+  .close::before, .close::after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  margin-top: -1px;
+  background: #000;
+  z-index: 4;
+}
+.close::before {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.close::after {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.close.blades::before, .close.blades::after {
+  border-radius: 5px 0;
+}
+.close.thick::before, .close.thick::after {
+  height: 4px;
+  margin-top: -2px;
+}
+
+
+
   #side {
     position:         absolute;
     bottom:           8px;
@@ -396,7 +513,7 @@
   </style>
 
   </head>
-  <body onload="dianji(); showEntry();" onresize="changewidth();">
+  <body onload="dianji(); showEntry(); changewidth();" onresize="setTimeout(changewidth,1000)">
     <div id = 'dinglan'>
       <span id = 'wenzi'>
         <a class="nav" href="./index.html">BiiHug</a>
