@@ -5,6 +5,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type="text/javascript" src="script/ajax.js"> </script>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
   <script type="text/javascript" >
   function Entry(id,type, cover, title){
     this.id = id;
@@ -121,20 +123,42 @@
     var clearr = document.getElementById(item.id).firstChild.childNodes;
     $(item).addClass("pick4");
     $("#back").css("overflow","visible");
-    clearr[1].style.paddingBottom = 280 + "px";
+    $(clearr[1]).css("padding-bottom","var(--height)");
+    $(clearr[2]).css("display","none");
     document.getElementById(item.id).style.top = $(window).scrollTop() + "px";
     document.getElementById(item.id).style.left = 0 + "px";
     $("#"+ item.id + "> .pickframe >.close").css("visibility","visible");
     $(item).removeAttr("onmousedown").removeAttr("onmouseup");
+    $(item).css("height","auto");
     var mengban = document.createElement("div");
     mengban.id = "mengban";
     document.getElementById("back").appendChild(mengban);
+    var intro = document.createElement("div");
+    intro.id = "intro";
+    intro.innerHTML = "低端全球化";
+    var article = document.createElement("div");
+    article.id = "article";
+    $.ajax({
+      url:'articles/blog.html',
+      type:'get',
+      success:function(res){
+          $('#article').html($(res));
+      }
+  });
+    var thisdiv = document.getElementById(item.id);
+    thisdiv.appendChild(intro);
+    thisdiv.appendChild(article);
   }
 
   function tuozhanclick(item){
     document.getElementById("back").removeChild(document.getElementById("mengban"));
     var blockId = "entry" + (item.id).split('close')[1];
+    var getback = document.getElementById(blockId).firstChild.childNodes;
+    $(getback[1]).css("height","calc(var(--height)*0.2424);")
+    $(getback[2]).css("display","block");
     var thisBlock = document.getElementById(blockId);
+    thisBlock.removeChild(document.getElementById("intro"));
+    thisBlock.removeChild(document.getElementById("article"));
     $("#"+blockId).addClass("pick").removeClass("pick4").removeClass("pick3");
     $(item).css("visibility","hidden");
     $("#"+blockId).css("top","");
@@ -319,11 +343,16 @@
   }
   .pick4{
     width: 100% !important;
-    height: 1700px;
     margin-left: 0px;
     margin-right: 0px;
   }
-
+  @media screen and (max-width: 540px) {
+    .pick4{
+      width: 390px !important;
+      margin-left: -30px;
+      margin-right: -30px;
+    }
+  }
   .pick:hover{
     box-shadow: 0 4px 4px rgba(0,0,0,0.2);
   }
@@ -404,6 +433,65 @@
     text-align: center;
     font-size: 22px;
     color: rgba(0,0,0,0.6);
+  }
+
+  #intro {
+    margin-top: 35px;
+    margin-bottom: 50px;
+    margin-left: 15%;
+    font-size: 30px;
+  }
+  @media screen and (max-width: 540px) {
+    #intro {
+      margin-top: 35px;
+      margin-bottom: 50px;
+      margin-left: 10%;
+      font-size: 30px;
+    }
+  }
+@media screen and (min-width: 540px) and (max-width: 790px) {
+  #intro {
+    margin-top: 35px;
+    margin-bottom: 50px;
+    margin-left: 10%;
+    font-size: 30px;
+  }
+}
+
+  #article {
+    margin-left: 15%;
+    margin-right: 15%;
+    font-size: 18px;
+    font-family: "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
+    text-align: justify;
+    text-justify: inter-ideograph;
+  }
+  @media screen and (max-width: 540px) {
+    #article {
+      margin-left: 10%;
+      margin-right: 10%;
+      font-size: 18px;
+      font-family: "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
+      text-align: justify;
+      text-justify: inter-ideograph;
+    }
+  }
+  @media screen and (min-width: 540px) and (max-width: 790px) {
+    #article {
+      margin-left: 10%;
+      margin-right: 10%;
+      font-size: 18px;
+      font-family: "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
+      text-align: justify;
+      text-justify: inter-ideograph;
+    }
+    }
+  p.first:first-letter{
+    font-size: 40px;
+  }
+
+  img.main{
+    width: 100%
   }
 
   #mengban {
