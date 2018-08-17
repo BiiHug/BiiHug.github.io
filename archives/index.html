@@ -3,16 +3,19 @@
   <head>
   <title>Bii</title>
   <meta charset="utf-8" />
+  <meta name="referrer" content="never">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
   <script type="text/javascript" src="script/ajax.js"> </script>
   <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
   <script type="text/javascript" >
-  function Entry(id,type, cover, title){
+  function Entry(id,type, cover, title, address, position){
     this.id = id;
     this.type = type;
     this.cover = cover;
     this.title = title;
+    this.address = address;
+    this.position = position;
 
     this.toHTML = function(){
       var blogHTML = "";
@@ -27,7 +30,7 @@
             '</div>'+
           '</div>'+
         '</div>';
-      } else if (this.type == 2) {
+      } else{
         blogHTML += '<div class="pick pick2" id="entry'+this.id+'"onmousedown="tuozhan(this);" onmouseup="tuozhan2(this); changewidth();">'+
           '<div class="pickframe">'+
             '<span class="close blades thick" id="close'+this.id+'" onclick="tuozhanclick(this); setTimeout(changewidth,1000)"></span>'+
@@ -38,47 +41,19 @@
             '</div>'+
           '</div>'+
         '</div>';
-        }else {
-          blogHTML += '<div class="pick pick3" id="entry'+this.id+'">'+
-            '<div class="pickframe">'+
-              '<div class="pickcover pickcover3" style="background-image: url('+this.cover+');"></div>'+
-              '<div class="pickinfo pickinfo3">'+
-              '<div class="pickinfo3_1"></div>'+
-              '<div class="pickinfo3_2">'+this.title+'</div>'+
-              '</div>'+
-            '</div>'+
-          '</div>';
-      }
+        }
       return blogHTML;
     }
   }
 
     var backbody = [];
-    var Entry1 = new Entry(1,1,'./img/2.jpg','杨振宁');
-    var Entry2 = new Entry(2,2,'./img/3.jpg','低端全球化');
-    var Entry3 = new Entry(3,2,'./img/4.jpg','低端全球化');
-    var Entry4 = new Entry(4,2,'./img/5.jpg','低端全球化');
-    var Entry5 = new Entry(5,1,'./img/6.jpg','低端全球化');
-    var Entry6 = new Entry(6,2,'./img/7.gif','低端全球化');
-    var Entry7 = new Entry(7,2,'./img/8.jpg','低端全球化');
-    var Entry8 = new Entry(8,2,'./img/9.jpg','低端全球化');
-    var Entry9 = new Entry(9,1,'./img/10.jpg','低端全球化');
-    var Entry10 = new Entry(10,2,'./img/11.jpg','低端全球化');
-    var Entry11 = new Entry(11,2,'./img/12.jpg','低端全球化');
-    var Entry12 = new Entry(12,1,'./img/13.png','低端全球化');
+    var Entry1 = new Entry(1,1,'./img/entry1.jpg','改革开放：什么是40年最重要的事？','articles/entry1.html');
+    var Entry2 = new Entry(2,2,'./img/entry2.jpg','迷妹','articles/entry2.html','0px 35%');
 
     backbody.push(Entry1);
     backbody.push(Entry2);
-    backbody.push(Entry3);
-    backbody.push(Entry4);
-    backbody.push(Entry5);
-    backbody.push(Entry6);
-    backbody.push(Entry7);
-    backbody.push(Entry8);
-    backbody.push(Entry9);
-    backbody.push(Entry10);
-    backbody.push(Entry11);
-    backbody.push(Entry12);
+
+
 
     var i = 1, checklist = [];
     while (i < backbody.length) {
@@ -89,10 +64,10 @@
     }
 
     function showEntry(){
-      var i = 0, entryListHTML = "";
-      while (i < backbody.length) {
+      var i = backbody.length-1, entryListHTML = "";
+      while (i > -1) {
         entryListHTML += backbody[i].toHTML();
-        i++;
+        i--;
       }
     document.getElementById("back").innerHTML = entryListHTML;
   }
@@ -120,6 +95,7 @@
     document.getElementById(item.id).style.left = leftt -10 + "px";
   }
   function tuozhan2(item) {
+    var index = (item.id).split('entry')[1] - 1;
     var clearr = document.getElementById(item.id).firstChild.childNodes;
     $(item).addClass("pick4");
     $("#back").css("overflow","visible");
@@ -128,6 +104,9 @@
     document.getElementById(item.id).style.top = $(window).scrollTop() + "px";
     document.getElementById(item.id).style.left = 0 + "px";
     $("#"+ item.id + "> .pickframe >.close").css("visibility","visible");
+    if (backbody[index].position != null) {
+      $("#"+ item.id + "> .pickframe > .pickcover").css("background-position",backbody[index].position);
+    }
     $(item).removeAttr("onmousedown").removeAttr("onmouseup");
     $(item).css("height","auto");
     var mengban = document.createElement("div");
@@ -135,11 +114,11 @@
     document.getElementById("back").appendChild(mengban);
     var intro = document.createElement("div");
     intro.id = "intro";
-    intro.innerHTML = "低端全球化";
+    intro.innerHTML = backbody[index].title;
     var article = document.createElement("div");
     article.id = "article";
     $.ajax({
-      url:'articles/blog.html',
+      url:backbody[index].address,
       type:'get',
       success:function(res){
           $('#article').html($(res));
