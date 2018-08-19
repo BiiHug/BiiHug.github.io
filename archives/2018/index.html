@@ -20,7 +20,7 @@
     this.toHTML = function(){
       var blogHTML = "";
       if (this.type == 1){
-        blogHTML += '<div class="pick pick1" id="entry'+this.id+'"onmousedown="tuozhan(this); changewidth();" onmouseup="tuozhan2(this);">'+
+        blogHTML += '<div class="pick pick1" id="entry'+this.id+'"onmouseover = "getback(this);" onclick="tuozhan(this); changewidth();">'+
           '<div class="pickframe">'+
             '<span class="close blades thick" id="close'+this.id+'" onclick="tuozhanclick(this); setTimeout(changewidth,1000)"></span>'+
             '<div class="pickcover pickcover1" style="background-image: url('+this.cover+');"></div>'+
@@ -31,7 +31,7 @@
           '</div>'+
         '</div>';
       } else{
-        blogHTML += '<div class="pick pick2" id="entry'+this.id+'"onmousedown="tuozhan(this);" onmouseup="tuozhan2(this); changewidth();">'+
+        blogHTML += '<div class="pick pick2" id="entry'+this.id+'"onmouseover = "getback(this);" onclick="tuozhan(this); changewidth();">'+
           '<div class="pickframe">'+
             '<span class="close blades thick" id="close'+this.id+'" onclick="tuozhanclick(this); setTimeout(changewidth,1000)"></span>'+
             '<div class="pickcover pickcover2" style="background-image: url('+this.cover+');"></div>'+
@@ -47,16 +47,19 @@
   }
 
     var backbody = [];
+
     var Entry1 = new Entry(1,1,'./img/entry1.jpg','改革开放：什么是40年最重要的事？','articles/entry1.html');
-    var Entry2 = new Entry(2,2,'./img/entry2.jpg','迷妹','articles/entry2.html','0px 35%');
+    var Entry2 = new Entry(2,2,'./img/entry2.jpg','东京地铁沙林事件','articles/entry2.html');
+    var Entry3 = new Entry(3,2,'./img/entry3.gif','土耳其严控大学言论','articles/entry3.html');
+    var Entry4 = new Entry(4,1,'./img/entry4.jpg','迷妹','articles/entry4.html',"0px 35%");
 
     backbody.push(Entry1);
     backbody.push(Entry2);
+    backbody.push(Entry3);
+    backbody.push(Entry4);
 
-
-
-    var i = 1, checklist = [];
-    while (i < backbody.length) {
+    var i = 0, checklist = [];
+    while (i < backbody.length-1) {
       if (backbody[i].type == 1) {
         checklist.push(backbody[i]);
       }
@@ -73,19 +76,23 @@
   }
 
   function changewidth() {
-    var i = 0;
-    while (i < checklist.length){
-      var brother = document.getElementById("entry"+(checklist[i].id - 1));
+    var i = checklist.length - 1;
+    while (i > -1){
+      var brother = document.getElementById("entry"+(checklist[i].id + 1));
       var benzun = document.getElementById("entry"+(checklist[i].id));
       var check = back.clientWidth- brother.offsetWidth - brother.offsetLeft;
       if (check == 255){
       benzun.style.width = "240px";
+      $("#entry"+checklist[i].id+"> .pickframe > .pickinfo").addClass('pickinfo13').removeClass('pickinfo');
       } else {
       benzun.style.width = "490px";
+      $("#entry"+checklist[i].id+"> .pickframe > .pickinfo13").addClass('pickinfo').removeClass('pickinfo13');
       }
-      i++;
+      i--;
     }
   }
+
+  var status = 0;
 
   function tuozhan(item) {
     var topp = document.getElementById(item.id).offsetTop;
@@ -93,8 +100,6 @@
     $(item).addClass("pick3").removeClass("pick");
     document.getElementById(item.id).style.top = topp -10 + "px";
     document.getElementById(item.id).style.left = leftt -10 + "px";
-  }
-  function tuozhan2(item) {
     var index = (item.id).split('entry')[1] - 1;
     var clearr = document.getElementById(item.id).firstChild.childNodes;
     $(item).addClass("pick4");
@@ -107,7 +112,7 @@
     if (backbody[index].position != null) {
       $("#"+ item.id + "> .pickframe > .pickcover").css("background-position",backbody[index].position);
     }
-    $(item).removeAttr("onmousedown").removeAttr("onmouseup");
+    $(item).removeAttr("onclick");
     $(item).css("height","auto");
     var mengban = document.createElement("div");
     mengban.id = "mengban";
@@ -127,6 +132,7 @@
     var thisdiv = document.getElementById(item.id);
     thisdiv.appendChild(intro);
     thisdiv.appendChild(article);
+    status = 1;
   }
 
   function tuozhanclick(item){
@@ -142,8 +148,13 @@
     $(item).css("visibility","hidden");
     $("#"+blockId).css("top","");
     $("#"+blockId).css("left","");
-    $("#"+blockId).attr("onmousedown","tuozhan(this);");
-    $("#"+blockId).attr("onmouseup","tuozhan2(this);");
+    status = 0;
+  }
+
+  function getback(item){
+    if (status == 0){
+    $(item).attr("onclick","tuozhan(this); changewidth();");
+    }
   }
 
   function sidepush() {
@@ -338,6 +349,9 @@
   .pick:hover > .pickframe > .pickcover {
     transform: scale(1.1);
   }
+  .pick:hover > .pickframe > .pickinfo13 {
+    height: calc(var(--height)*0.34);
+  }
   .pick:hover > .pickframe > .pickinfo2 {
     height: calc(var(--height)*0.3131);
   }
@@ -375,6 +389,15 @@
     z-index: 2;
     background: white;
   }
+  .pickinfo13{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: calc(var(--height)*0.2424);
+    transition: height 0.5s;
+    z-index: 2;
+    background: white;
+  }
   .pickinfo1{
     background: rgba(0,0,0,0.6);
   }
@@ -403,6 +426,7 @@
     margin-top: 10px;
     margin-left: 5%;
     font-size: 22px;
+    line-height: 37px;
     color: white;
   }
   .pickinfo2_2{
@@ -445,6 +469,21 @@
     text-align: justify;
     text-justify: inter-ideograph;
   }
+  #abstract {
+    margin-bottom: 50px;
+    font-size: 20px;
+    color: rgba(0,0,0,0.3);
+    text-align: center;
+    font-family: Arial,Hiragino Sans GB,冬青黑,Microsoft YaHei,微软雅黑,SimSun,宋体,Helvetica,Tahoma,Arial sans-serif;
+  }
+  #abstract::before, #abstract::after {
+    content: '';
+      display: inline-block;
+      border: 1px solid rgba(0,0,0,0.3);
+      width: 15px;
+      vertical-align: middle;
+      margin-right: 4px;
+}
   @media screen and (max-width: 540px) {
     #article {
       margin-left: 10%;
@@ -464,11 +503,33 @@
       text-align: justify;
       text-justify: inter-ideograph;
     }
-    }
-  p.first:first-letter{
+  }
+  p.first:first-letter {
     font-size: 40px;
   }
-
+  p.img {
+    color: rgba(0,0,0,0.6);
+    font-size: 12px;
+    text-align: center;
+  }
+  p.start {
+    text-align: center;
+    width: 30px;
+    border-bottom: 2px solid #000;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  p.end {
+    text-align: center;
+    width: 30px;
+    border-bottom: 2px solid #000;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   img.main{
     width: 100%
   }
