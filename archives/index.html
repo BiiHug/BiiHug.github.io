@@ -59,6 +59,7 @@
     var Entry4 = new Entry(4,1,'./img/entry4.jpg','迷妹','articles/entry4.html',"0px 35%");
     var Entry5 = new Entry(5,2,'./img/entry5.jpg','香港语言之争','articles/entry5.html');
     var Entry6 = new Entry(6,1,'./img/entry6.jpg','可可可可','articles/entry6.html','40% 35%');
+    var Entry7 = new Entry(7,2,'./img/entry7.jpg','巴西国家博物馆大火','articles/entry7.html')
 
     backbody.push(Entry1);
     backbody.push(Entry2);
@@ -66,6 +67,7 @@
     backbody.push(Entry4);
     backbody.push(Entry5);
     backbody.push(Entry6);
+    backbody.push(Entry7);
 
     var i = 0, checklist = [];
     while (i < backbody.length-1) {
@@ -354,7 +356,14 @@
     margin-left: 0px;
     margin-right: 0px;
   }
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 480px) and (min-width: 340px){
+    .pick4{
+      width: 330px !important;
+      margin-left: -30px;
+      margin-right: -30px;
+    }
+  }
+  @media screen and (max-width: 340px){
     .pick4{
       width: 290px !important;
       margin-left: -10px;
@@ -574,7 +583,17 @@
     height: 30px;
     visibility: hidden;
   }
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 480px) and (min-width: 340px){
+    .close {
+      position: absolute;
+      top: -15px;
+      right: 150px;
+      width: 30px;
+      height: 30px;
+      visibility: hidden;
+    }
+  }
+  @media screen and (max-width: 340px) {
     .close {
       position: absolute;
       top: -15px;
