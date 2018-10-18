@@ -27,7 +27,7 @@
       if (this.type == 1){
         blogHTML += '<div class="pick pick1" id="entry'+this.id+'"onmouseover = "getback(this);" onclick="changewidth(); tuozhan(this); ">'+
           '<div class="pickframe">'+
-            '<span class="close blades thick" id="close'+this.id+'" onclick="tuozhanclick(this); setTimeout(changewidth,1050)"></span>'+
+            '<span class="close blades thick" id="close'+this.id+'" onclick="tuozhanclick(this); setTimeout(changewidth,1050);setTimeout(changewidth,1300)"></span>'+
             '<div class="pickcover pickcover1" style="background-image: url('+this.cover+');"></div>'+
             '<div class="pickinfo pickinfo1">'+
             '<div class="pickinfo1_1"></div>'+
@@ -38,7 +38,7 @@
       } else{
         blogHTML += '<div class="pick pick2" id="entry'+this.id+'"onmouseover = "getback(this);" onclick=" changewidth(); tuozhan(this);">'+
           '<div class="pickframe">'+
-            '<span class="close blades thick" id="close'+this.id+'" onclick="tuozhanclick(this); setTimeout(changewidth,1050)"></span>'+
+            '<span class="close blades thick" id="close'+this.id+'" onclick="tuozhanclick(this); setTimeout(changewidth,1050);setTimeout(changewidth,1300)"></span>'+
             '<div class="pickcover pickcover2" style="background-image: url('+this.cover+');"></div>'+
             '<div class="pickinfo pickinfo2">'+
             '<div class="pickinfo2_1"></div>'+
@@ -59,7 +59,15 @@
     var Entry4 = new Entry(4,1,'./img/entry4.jpg','迷妹','articles/entry4.html',"0px 35%");
     var Entry5 = new Entry(5,2,'./img/entry5.jpg','香港语言之争','articles/entry5.html');
     var Entry6 = new Entry(6,1,'./img/entry6.jpg','可可可可','articles/entry6.html','40% 35%');
-    var Entry7 = new Entry(7,2,'./img/entry7.jpg','巴西国家博物馆大火','articles/entry7.html')
+    var Entry7 = new Entry(7,2,'./img/entry7.jpg','巴西国家博物馆大火','articles/entry7.html');
+    var Entry8 = new Entry(8,2,'./img/entry8.jpg','挪威恐袭','articles/entry8.html','40% 10%');
+var Entry9 = new Entry(9,2,'./img/entry9.jpg','日本寺院网红标语','articles/entry9.html','');
+var Entry10 = new Entry(10,2,'./img/entry10.jpg','福州：老教堂的新颜色','articles/entry10.html','');
+var Entry11 = new Entry(11,2,'./img/entry11.jpg','树木希林逝世','articles/entry11.html','');
+var Entry12 = new Entry(12,1,'./img/entry12.jpg','上海：四川北路','articles/entry12.html','');
+var Entry13 = new Entry(13,2,'./img/entry13.jpg','可口可乐乌龙营销','articles/entry13.html','hello，death');
+var Entry14 = new Entry(14,2,'./img/entry14.jpg','香港：李太报摊','articles/entry14.html','');
+var Entry15 = new Entry(15,1,'./img/entry15.jpg','华晨变迁','articles/entry15.html','');
 
     backbody.push(Entry1);
     backbody.push(Entry2);
@@ -68,6 +76,14 @@
     backbody.push(Entry5);
     backbody.push(Entry6);
     backbody.push(Entry7);
+    backbody.push(Entry8);
+backbody.push(Entry9);
+backbody.push(Entry10);
+backbody.push(Entry11);
+backbody.push(Entry12);
+backbody.push(Entry13);
+backbody.push(Entry14);
+backbody.push(Entry15);
 
     var i = 0, checklist = [];
     while (i < backbody.length-1) {
@@ -327,17 +343,14 @@
   .pick {
     float: left;
     border-radius: 5px;
-    transition: all 0.4s;
     background-color: white;
     margin: 10px 5px 10px 5px;
     height: var(--height);
     box-shadow: 0 2px 2px rgba(0,0,0,0.2);
     overflow: hidden;
-    transition: width 1s,height 1s;
   }
   .pick1{
     width: calc(var(--width)*2 + 10px);
-    transition: width 0.7s;
   }
   .pick2{
     width: var(--width);
@@ -561,6 +574,16 @@
   img.main{
     width: 100%
   }
+  iframe.main{
+    height: calc(var(--height)*1.5);
+    width: 100%
+  }
+  @media screen and (max-width: 700px) {
+    iframe.main{
+      height: var(--height);
+      width: 100%
+    }
+  }
 
   #mengban {
     width: 100%;
@@ -689,7 +712,7 @@
   </style>
 
   </head>
-  <body onload="dianji(); showEntry(); changewidth(); locate();" onresize="setTimeout(changewidth,1050);" onscroll="locate();">
+  <body onload="dianji(); showEntry(); changewidth(); locate();" onresize="setTimeout(changewidth,1050);setTimeout(changewidth,1050)" onscroll="locate();">
     <div id = 'dinglan'>
       <span id = 'wenzi'>
         <a class="nav" href="./index.html">BiiHug</a>
