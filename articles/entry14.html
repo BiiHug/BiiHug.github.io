@@ -23,10 +23,9 @@
 <a onclick="alert(location.href);">hh</a>
 <div id='comments1'></div>
 <script>
-setTimeout("alert(location.href)",'50');
+setTimeout("alert(window.location.href)",'50');
 const gitment1 = new Gitment({
-  id: window.location.href,
-  link: window.location.href, // optional
+  id: 'https://biihug.github.io/articles/entry14.html', // optional
   owner: 'BiiHug',
   repo: 'BiiHug.github.io',
   oauth: {
