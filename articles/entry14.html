@@ -25,13 +25,14 @@
 <script>
 setTimeout("alert(location.href)",'50');
 const gitment1 = new Gitment({
-  id: 'Bii', // optional
+  id: window.location.href, // optional
   owner: 'BiiHug',
   repo: 'BiiHug.github.io',
   oauth: {
     client_id: '2660b2286a9cd7fa5c82',
     client_secret: '9da06908b2323e5f2f0c2f97b8ec15ac148b4b40',
   },
+
   // ...
   // For more available options, check out the documentation below
 })
