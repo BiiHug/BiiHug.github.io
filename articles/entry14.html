@@ -20,7 +20,7 @@
 <p></p>
 <p></p>
 <p></p>
-<a onclick="alert(window.location.href)";>hh</a>
+<a onclick="alert(location.href);">hh</a>
 <div id='comments1'></div>
 <script>
 const gitment1 = new Gitment({
@@ -35,6 +35,6 @@ const gitment1 = new Gitment({
   // For more available options, check out the documentation below
 })
 
-gitment1.render('comments1')
+setTimeout("gitment1.render('comments1')",50);
 </script>
 <div>
