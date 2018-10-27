@@ -23,7 +23,7 @@
 <a onclick="alert(location.href);">hh</a>
 <div id='comments1'></div>
 <script>
-setTimeout(alert(location.href),50);
+setTimeout("alert(location.href)",'50');
 const gitment1 = new Gitment({
   id: 'Bii', // optional
   owner: 'BiiHug',
@@ -36,6 +36,6 @@ const gitment1 = new Gitment({
   // For more available options, check out the documentation below
 })
 
-setTimeout("gitment1.render('comments1')",50);
+setTimeout("gitment1.render('comments1')",'50');
 </script>
 <div>
