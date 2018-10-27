@@ -158,6 +158,7 @@ backbody.push(Entry16);
       type:'get',
       success:function(res){
           $('#article').html($(res));
+          alert(window.location.href);
           var stateObject = {};
           var title = "Wow Title";
           var newUrl = "./articles/entry14.html";
