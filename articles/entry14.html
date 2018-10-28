@@ -20,10 +20,9 @@
 <p></p>
 <p></p>
 <p></p>
-<a onclick="alert(location.href);">hh</a>
-<div id='comments1'></div>
+<div id='comments'></div>
 <script>
-const gitment1 = new Gitment({
+var gitment = new Gitment({
   id: 'https://biihug.github.io/articles/entry14.html',
   link: 'https://biihug.github.io/articles/entry14.html',// optional
   owner: 'BiiHug',
@@ -32,11 +31,7 @@ const gitment1 = new Gitment({
     client_id: '2660b2286a9cd7fa5c82',
     client_secret: '9da06908b2323e5f2f0c2f97b8ec15ac148b4b40',
   },
-
-  // ...
-  // For more available options, check out the documentation below
 })
-
-gitment1.render('comments1');
+gitment.render('comments');
 </script>
 <div>

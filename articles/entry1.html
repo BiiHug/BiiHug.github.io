@@ -90,18 +90,16 @@
 <p></p>
 <div id='comments'></div>
 <script>
-const gitment = new Gitment({
-  id: 'Bii', // optional
+var gitment = new Gitment({
+  id: 'https://biihug.github.io/articles/entry1.html',
+  link: 'https://biihug.github.io/articles/entry1.html',// optional
   owner: 'BiiHug',
   repo: 'BiiHug.github.io',
   oauth: {
     client_id: '2660b2286a9cd7fa5c82',
     client_secret: '9da06908b2323e5f2f0c2f97b8ec15ac148b4b40',
   },
-  // ...
-  // For more available options, check out the documentation below
 })
-
-gitment.render('comments')
+gitment.render('comments');
 </script>
 </div>
