@@ -74,11 +74,11 @@
   a:visited{
     color: white;
   }
-  a.card {
+  a.welcome {
     color: blue;
   }
-  a.card:visited{
-    color: green;
+  a.welcome:visited{
+    color: grey;
   }
   #dinglan {
     position: fixed;
@@ -105,7 +105,21 @@
       overflow:visible;
       transition: width 0.6s;
       }
-
+  #welcome{
+      position: relative;
+      overflow:visible;
+      transition: width 0.6s;
+    }
+  #welcomecover{
+      width: 100%;
+      background-size: cover;
+      background-position:center;
+      transition: all 1s;
+      padding-bottom: 500px;
+    }
+  #welcomemessage{
+    font-size: 80px;
+  }
 
 
   .pick {
@@ -130,6 +144,7 @@
     background-size: cover;
     background-position:center;
     transition: all 1s, padding 0.7s;
+    padding-bottom: var(--height);
   }
   .pickinfo{
     position: absolute;
@@ -199,9 +214,14 @@
         <img id = "fuzhu" style="display: none"></img>
       </span>
     </div>
+    <div id="welcome">
+      <div id="welcomecover" style="background-image: url(../img/index/1.png);">
+
+      </div>
+    </div>
     <div id="back">
-      <div id="card" class="pick">
-        <div id="comments"></div>
+      <p id="welcomemessage">HH</p>
+      <div id="comments" style="display: none"></div>
         <script>
         var gitment = new Gitment({
         id: 'user_index',
@@ -217,8 +237,12 @@
         function check(){
           var info = $('#comments .gitment-editor-avatar').attr('href');
           if (info == undefined) {
-            setTimeout(check,1500);
+            setTimeout(check,500);
           }else {
+            var basicHtml = "";
+            basicHtml += '<div class="pickframe">'+
+                            '<div class="pickcover" style="background-image: url(../img/index/1.png);"></div>'+
+                          '</div>'
             var patternGetUser = /https:\/\/github\.com\/(.+)/;
             var user = patternGetUser.exec(info)[1];
             var patternLogin = /login.+/;
@@ -226,11 +250,11 @@
 
             if (loginFlag == null) {
               var head = $('#comments .gitment-editor-avatar').html();
-              document.getElementById("card").innerHTML = head;
+              document.getElementById("welcomemessage").innerHTML = 'Welcome!'+user;
             }else {
               var loginAddr = $('#comments .gitment-editor-login-link').attr('href');
-              var loginAlert = "<a class='card' href='" + loginAddr + "'> Login </a>"
-              document.getElementById("card").innerHTML = loginAlert;
+              var loginAlert = "Please <a class='welcome' href='" + loginAddr + "'> Login </a>"
+              document.getElementById("welcomemessage").innerHTML = loginAlert;
             }
             //var test = $('#comments').html();
             //document.getElementById("card").innerHTML = test;
@@ -239,7 +263,6 @@
         check();
         </script>
       </div>
-    </div>
     <div id="bianlan" class="bianlan1">
       <ul id="sidelist">
         <li class="side"><a href="../index.html">文章中心</a></li>
