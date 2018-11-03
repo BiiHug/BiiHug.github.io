@@ -217,7 +217,7 @@
         function check(){
           var info = $('#comments .gitment-editor-avatar').attr('href');
           if (info == undefined) {
-            setTimeout(check(),1500);
+            setTimeout(check,1500);
           }else {
             var patternGetUser = /https:\/\/github\.com\/(.+)/;
             var user = patternGetUser.exec(info)[1];
