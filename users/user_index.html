@@ -216,22 +216,25 @@
         gitment.render('comments');
         function check(){
           var info = $('#comments .gitment-editor-avatar').attr('href');
-          alert(info);
-          var patternGetUser = /https:\/\/github\.com\/(.+)/;
-          var user = patternGetUser.exec(info)[1];
-          var patternLogin = /login.+/;
-          var loginFlag = patternLogin.exec(user);
-
-          if (loginFlag == null) {
-            var head = $('#comments .gitment-editor-avatar').html();
-            document.getElementById("card").innerHTML = head;
+          if (info == undefined) {
+            setTimeout(check(),500);
           }else {
-            var loginAddr = $('#comments .gitment-editor-login-link').attr('href');
-            var loginAlert = "<a class='card' href='" + loginAddr + "'> Login </a>"
-            document.getElementById("card").innerHTML = loginAlert;
+            var patternGetUser = /https:\/\/github\.com\/(.+)/;
+            var user = patternGetUser.exec(info)[1];
+            var patternLogin = /login.+/;
+            var loginFlag = patternLogin.exec(user);
+
+            if (loginFlag == null) {
+              var head = $('#comments .gitment-editor-avatar').html();
+              document.getElementById("card").innerHTML = head;
+            }else {
+              var loginAddr = $('#comments .gitment-editor-login-link').attr('href');
+              var loginAlert = "<a class='card' href='" + loginAddr + "'> Login </a>"
+              document.getElementById("card").innerHTML = loginAlert;
+            }
+            //var test = $('#comments').html();
+            //document.getElementById("card").innerHTML = test;
           }
-          //var test = $('#comments').html();
-          //document.getElementById("card").innerHTML = test;
         }
         check();
         </script>
