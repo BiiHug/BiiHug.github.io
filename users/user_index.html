@@ -74,6 +74,12 @@
   a:visited{
     color: white;
   }
+  a.card {
+    color: blue;
+  }
+  a.card:visited{
+    color: green;
+  }
   #dinglan {
     position: fixed;
     top: 0px;
@@ -218,7 +224,8 @@
           var head = $('#comments .gitment-editor-avatar').html();
           document.getElementById("card").innerHTML = head;
         }else {
-          var loginAlert = "<p><a class='gitment-editor-login-link' href='https://github.com/login/oauth/authorize?scope=public_repo&amp;redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fusers%2Fuser_index.html&amp;client_id=2660b2286a9cd7fa5c82&amp;client_secret=9da06908b2323e5f2f0c2f97b8ec15ac148b4b40'>Login</a></p>";
+          var loginAddr = $('#comments .gitment-editor-login-link').attr('href');
+          var loginAlert = "<a class='card' href='" + loginAddr + "'> Login </a>"
           document.getElementById("card").innerHTML = loginAlert;
         }
         //var test = $('#comments').html();
