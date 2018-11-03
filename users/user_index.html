@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <title>Bii</title>
+  <meta charset="utf-8" />
+  <meta name="referrer" content="never">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type="text/javascript" src="script/ajax.js"> </script>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+<script src="https://jjeejj.github.io/js/gitment.js"></script>
+  <script type="text/javascript" >
+  function locate(){
+    if ($(window).scrollTop() == 0){
+      window.scrollTo(0,1);
+    }
+  }
+
+
+
+
+
+  function sidepush() {
+    if (document.getElementById("fuzhu").style.display == "none") {
+      $("#bianlan").addClass("bianlan2").removeClass("bianlan1");
+      document.getElementById("sideicon").src = "../icon/side2.png";
+      document.getElementById("fuzhu").style.display = "inline";
+    } else {
+      $("#bianlan").addClass("bianlan1").removeClass("bianlan2");
+      document.getElementById("sideicon").src = "../icon/side1.png";
+      document.getElementById("fuzhu").style.display = "none";
+    }
+  }
+
+  function dianji(){
+    document.body.addEventListener('touchstart', function () { });
+  }
+
+  </script>
+  <style type='text/css'>
+  :root{
+  --width: 210px;
+  --height: 280px;
+}
+  body{ margin: 0px;
+        font-family: Arial,Hiragino Sans GB,冬青黑,Microsoft YaHei,微软雅黑,SimSun,宋体,Helvetica,Tahoma,Arial sans-serif;}
+  ul {
+    padding:0;
+    margin-top: 2px;
+  }
+  li {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    list-style:none;
+  }
+  li.side {
+    margin-left: 20px;
+    margin-right: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+  }
+  li.main:hover{
+    background-color: rgba(0,0,0,0.7);
+    transition:background-color 0.5s linear;
+  }
+  li.side:hover{
+    color: rgba(255,255,255,0.7);
+    transition:color 0.2s linear;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  a:visited{
+    color: white;
+  }
+  #dinglan {
+    position: fixed;
+    top: 0px;
+    background-color: rgba(0,0,0,0.95);
+    width: 100%;
+    height: 45px;
+    z-index: 99;
+  }
+  #wenzi {
+    position:         absolute;
+    bottom:           8px;
+    right:            0px;
+    left:             0px;
+    font-family:      Times;
+    font-size:        26px;
+    font-weight: normal;
+    color: white;
+    text-align: center;
+  }
+  #back{
+      position: relative;
+      margin: 65px 10% 0;
+      overflow:visible;
+      transition: width 0.6s;
+      }
+
+
+
+  .pick {
+    float: left;
+    border-radius: 5px;
+    background-color: white;
+    margin: 10px 0px 10px 0px;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+    width: 100%;
+  }
+  .pick:hover{
+    box-shadow: 0 4px 4px rgba(0,0,0,0.2);
+  }
+  .pickframe{
+    position: relative;
+    width: 100%;
+    height: var(--height);
+  }
+  .pickcover{
+    width: 100%;
+    border-radius: 5px 5px 0px 0px;
+    background-size: cover;
+    background-position:center;
+    transition: all 1s, padding 0.7s;
+  }
+  .pickinfo{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: calc(var(--height)*0.2424);
+    transition: height 0.5s;
+    z-index: 2;
+    background: white;
+  }
+
+  #side {
+    position:         absolute;
+    bottom:           8px;
+    top:              8px;
+    left:             15px;
+    font-size:        26px;
+    text-align: center;
+  }
+  #bianlan {
+    position: fixed;
+    top: 45px;
+    background-color: rgba(0,0,0,0.9);
+    width: 240px;
+    height: 100%;
+    z-index: 2;
+    transition:left 0.5s;
+    -moz-transition:left 0.5s; /* Firefox 4 */
+    -webkit-transition:left 0.5s; /* Safari and Chrome */
+    -o-transition:left 0.5s;
+  }
+  .bianlan1 {
+    left: -240px;
+  }
+  .bianlan2 {
+    left: 0px;
+  }
+  #sidelist {
+    position: absolute;
+    color: white;
+    top: 10px;
+    left: 0px;
+    right: 0px;
+    font-size: 20px;
+    text-align: center;
+  }
+  #list {
+    position: fixed;
+    color: white;
+    top: 28%;
+    left: 30%;
+    right: 30%;
+    margin-top: 300px;
+    font-size: 20px;
+    text-align: center;
+  }
+  </style>
+
+  </head>
+  <body onload="locate();" onscroll="locate();">
+    <div id = 'dinglan'>
+      <span id = 'wenzi'>
+        <a class="nav" href="../index.html">BiiHug</a>
+      </span>
+      <span id="side">
+        <img id = "sideicon" src="../icon/side1.png" onclick="sidepush();">
+        <img id = "fuzhu" style="display: none"></img>
+      </span>
+    </div>
+    <div id="back">
+      <div id="card" class="pick">
+        <div id="comments"></div>
+        <script>
+        var gitment = new Gitment({
+        id: 'entry21',
+        link: 'https://biihug.github.io/articles/entry21.html',
+        owner: 'BiiHug',
+        repo: 'BiiHug.github.io',
+        oauth: {
+        client_id: '2660b2286a9cd7fa5c82',
+        client_secret: '9da06908b2323e5f2f0c2f97b8ec15ac148b4b40',
+        },
+        })
+        gitment.render('comments');
+        var info = $('#comments .gitment-editor-avatar').attr('href');
+        var patternGetUser = /https:\/\/github\.com\/(.+)/;
+        var user = patternGetUser.exec(info)[1];
+        var patternLogin = /login.+/;
+        var loginFlag = patternLogin.exec(user);
+
+        if (loginFlag == null) {
+          var head = $('#comments .gitment-editor-avatar').html();
+          document.getElementById("card").innerHTML = head;
+        }else {
+          var loginAlert = "<p>Please Login</p>";
+          document.getElementById("card").innerHTML = loginAlert;
+        }
+        </script>
+      </div>
+    </div>
+    <div id="bianlan" class="bianlan1">
+      <ul id="sidelist">
+        <li class="side"><a href="../index.html">文章中心</a></li>
+      </ul>
+    </div>
+  </body>
+</html>
