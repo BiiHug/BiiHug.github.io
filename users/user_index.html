@@ -300,10 +300,12 @@
                 }
             });
             var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
-
             db.transaction(function (tx) {
-              tx.executeSql('INSERT INTO WIN (id, name) VALUES (3, "nihao")');
-              tx.executeSql('INSERT INTO WIN (id, name) VALUES (4, "666")');
+              tx.executeSql('CREATE TABLE IF NOT EXISTS WIN (id unique, name)');
+            });
+            db.transaction(function (tx) {
+              tx.executeSql('INSERT INTO WIN (id, name) VALUES (1, "nihao")');
+              tx.executeSql('INSERT INTO WIN (id, name) VALUES (2, "666")');
             });
             db.transaction(function (tx) {
               tx.executeSql('SELECT * FROM WIN', [], function (tx, results) {
