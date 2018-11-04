@@ -120,6 +120,12 @@
   #userheader{
     position: absolute;
   }
+  img.header{
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 100%;
+}
   #welcomemessage{
     color: rgba(97, 108, 170, 1);
   }
@@ -274,7 +280,7 @@
 
             if (loginFlag == null) {
               var headSrc = $('#comments .gitment-editor-avatar > img').attr('src');
-              var header = '<img src="' + headSrc + '">';
+              var header = '<img class="header" src="' + headSrc + '">';
               $('#welcomecover').css("background-image","url(../img/index/2.png)");
               $('#welcomemessage').css("color","rgba(192,91,55)");
               $('a.welcome').css("color","rgba(186,193,160)");
