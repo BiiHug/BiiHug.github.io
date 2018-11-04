@@ -281,6 +281,7 @@
             var loginFlag = patternLogin.exec(user);
 
             if (loginFlag == null) {
+
               var headSrc = $('#comments .gitment-editor-avatar > img').attr('src');
               var header = '<img class="header" src="' + headSrc + '">';
               $('#welcomecover').css("background-image","url(../img/index/2.png)");
@@ -291,6 +292,28 @@
               document.getElementById("welcomemessage").innerHTML = '欢迎!'+userPage;
               document.getElementById("userheader").innerHTML = header;
             }else {
+              $.ajax({
+                url:'../users/test.txt',
+                type:'get',
+                success:function(res){
+                    alert($(res).toString());
+                }
+            });
+            var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+
+            db.transaction(function (tx) {
+              tx.executeSql('INSERT INTO WIN (id, name) VALUES (3, "nihao")');
+              tx.executeSql('INSERT INTO WIN (id, name) VALUES (4, "666")');
+            });
+            db.transaction(function (tx) {
+              tx.executeSql('SELECT * FROM WIN', [], function (tx, results) {
+                var len = results.rows.length, i;
+                for (i = 0; i < len; i++){
+                  alert(results.rows.item(i).name );
+                }
+
+              }, null);
+            });
               var head = $('#comments .gitment-editor-avatar').html();
               var loginAddr = $('#comments .gitment-editor-login-link').attr('href');
               var loginAlert = "请先 <a class='welcome' href='" + loginAddr + "'> 登录 </a>";
