@@ -273,7 +273,7 @@
             var loginFlag = patternLogin.exec(user);
 
             if (loginFlag == null) {
-              var headSrc = $('#comments .gitment-editor-avatar' > img).attr('src');
+              var headSrc = $('#comments .gitment-editor-avatar > img').attr('src');
               var header = '<img src="' + headSrc + '">';
               $('#welcomecover').css("background-image","url(../img/index/2.png)");
               $('#welcomemessage').css("color","rgba(192,91,55)");
