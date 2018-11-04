@@ -266,10 +266,6 @@
           if (info == undefined) {
             setTimeout(check,500);
           }else {
-            var basicHtml = "";
-            basicHtml += '<div class="pickframe">'+
-                            '<div class="pickcover" style="background-image: url(../img/index/1.png);"></div>'+
-                          '</div>'
             var patternGetUser = /https:\/\/github\.com\/(.+)/;
             var userUrl = patternGetUser.exec(info)[0];
             var user = patternGetUser.exec(info)[1];
@@ -277,14 +273,15 @@
             var loginFlag = patternLogin.exec(user);
 
             if (loginFlag == null) {
-              var head = $('#comments .gitment-editor-avatar').html();
+              var headSrc = $('#comments .gitment-editor-avatar' > img).attr('src');
+              var header = '<img src="' + headSrc + '">';
               $('#welcomecover').css("background-image","url(../img/index/2.png)");
               $('#welcomemessage').css("color","rgba(192,91,55)");
               $('a.welcome').css("color","rgba(186,193,160)");
-              $('a.visited').css("color","rgba(186,193,160)");
+              $('a.welcome:visited').css("color","rgba(186,193,160)");
               var userPage = "<a class='welcome' href='" + userUrl + "'>" + user + "</a>";
               document.getElementById("welcomemessage").innerHTML = '欢迎!'+userPage;
-              document.getElementById("userheader").innerHTML = head;
+              document.getElementById("userheader").innerHTML = header;
             }else {
               var head = $('#comments .gitment-editor-avatar').html();
               var loginAddr = $('#comments .gitment-editor-login-link').attr('href');
