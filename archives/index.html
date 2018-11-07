@@ -77,6 +77,7 @@ var Entry19 = new Entry(19,1,'./img/entry19.jpg','上海：报亭的最后一晚
 var Entry20 = new Entry(20,2,'./img/entry20.jpg','里斯本葡式碎石路','articles/entry20.html','40% 10%');
 var Entry21 = new Entry(21,2,'./img/entry21.jpg','平如美棠译本获奖','articles/entry21.html','40% 30%');
 var Entry22 = new Entry(22,1,'./img/entry22.jpg','北京：莫测的生活','articles/entry22.html','');
+var Entry23 = new Entry(23,2,'./img/entry23.jpg','村上图书馆','articles/entry23.html','');
 
     backbody.push(Entry1);
     backbody.push(Entry2);
@@ -100,6 +101,7 @@ backbody.push(Entry19);
 backbody.push(Entry20);
 backbody.push(Entry21);
 backbody.push(Entry22);
+backbody.push(Entry23);
 
     var i = 0, checklist = [];
     while (i < backbody.length-1) {
@@ -729,6 +731,7 @@ backbody.push(Entry22);
 
   </head>
   <body onload="dianji(); showEntry(); changewidth(); locate();" onresize="setTimeout(changewidth,1050);setTimeout(changewidth,1050)" onscroll="locate();">
+    <script type="text/javascript" src="./php/test.php">  </script>
     <div id = 'dinglan'>
       <span id = 'wenzi'>
         <a class="nav" href="./index.html">BiiHug</a>
