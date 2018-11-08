@@ -15,6 +15,13 @@
     if ($(window).scrollTop() == 0){
       window.scrollTo(0,1);
     }
+    $.ajax({
+      url:'./php/test.php',
+      type:'get',
+      success:function(res){
+          alert($(res).toString());
+      }
+  });
   }
   function Entry(id,type, cover, title, address, position){
     this.id = id;
@@ -731,7 +738,7 @@ backbody.push(Entry23);
 
   </head>
   <body onload="dianji(); showEntry(); changewidth(); locate();" onresize="setTimeout(changewidth,1050);setTimeout(changewidth,1050)" onscroll="locate();">
-    <script type="text/javascript" src="./php/test.php">  </script>
+
     <div id = 'dinglan'>
       <span id = 'wenzi'>
         <a class="nav" href="./index.html">BiiHug</a>
