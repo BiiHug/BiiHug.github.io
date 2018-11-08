@@ -15,14 +15,7 @@
     if ($(window).scrollTop() == 0){
       window.scrollTo(0,1);
     }
-    $.ajax({
-      url:'./php/test.php',
-      type:'get',
-      dataType:'text',
-      success:function(res){
-          alert(res.toString());
-      }
-  });
+    
   }
   function Entry(id,type, cover, title, address, position){
     this.id = id;
