@@ -18,8 +18,9 @@
     $.ajax({
       url:'./php/test.php',
       type:'get',
+      dataType:'text',
       success:function(res){
-          alert($(res).toString());
+          alert(res.toString());
       }
   });
   }
